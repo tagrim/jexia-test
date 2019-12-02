@@ -1,0 +1,12 @@
+<div class="navbar">
+    <button class="prev"
+            (click)="prevPage()"
+            *ngIf="prevLink">
+        prev
+    </button>
+    <button class="next"
+            (click)="nextPage()"
+            *ngIf="nextLink">
+        next
+    </button>
+</div>

@@ -8,5 +8,6 @@
   {{person.birth_year}}
 </div>
 <div class="grid-cell">
-  {{person.homeworld}}
+  <div class="lds-ellipsis" *ngIf="isLoading"><div></div><div></div><div></div><div></div></div>
+  {{planetName}}
 </div>

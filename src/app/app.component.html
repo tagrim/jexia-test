@@ -1,8 +1,14 @@
 <app-common-grid [people]="people" [count]="count"></app-common-grid>
 
-<div class="navbar">
-  <button class="prev">prev</button>
-  <button class="next">next</button>
+<div class="loader-wrapper" *ngIf="isLoading">
+    <div class="loader">Loading...</div>
 </div>
+
+<app-navbar
+    *ngIf="!isLoading"
+    [prevLink]="previous"
+    [nextLink]="next"
+    (pageChanged)="onPageChanged($event)">
+</app-navbar>
 
 <router-outlet></router-outlet>

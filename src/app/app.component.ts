@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {SWGrabberService} from "./swgrabber.service";
+import {SWGrabberService} from './swgrabber.service';
 
 @Component({
   selector: 'app-root',
@@ -8,19 +8,24 @@ import {SWGrabberService} from "./swgrabber.service";
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  public people: Array<Object>;
-  public page: number = 1;
+  public people: Array<object>;
+  public isLoading: boolean;
 
-  private count: number = 0;
+  private count = 0;
   private next: string;
-  private prev: string;
+  private previous: string;
 
   constructor(
-    private _SwGrabber: SWGrabberService
+    private swGrabber: SWGrabberService
   ) {
-    this._SwGrabber.getPeople().subscribe(({ results: people, next, prev, count }) => {
-      Object.assign(this, { people, next, prev, count });
-      console.log(this.people);
+    this.onPageChanged();
+  }
+
+  onPageChanged(link?: string) {
+    this.isLoading = true;
+    this.swGrabber.getPeople('', link).subscribe(({ results: people, next, previous, count }) => {
+      Object.assign(this, { people, next, previous, count });
+      this.isLoading = false;
     });
   }
 }
