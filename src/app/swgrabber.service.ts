@@ -13,7 +13,12 @@ export class SWGrabberService {
   ) { }
 
   getPeople(name?: string, pageUrl?: string): Observable<any> {
-    const url = pageUrl || (this.apiUrl + (name || ''));
+    let searchAppendix = '';
+    if (name) {
+      searchAppendix = `?search=${name}`;
+    }
+
+    const url = pageUrl || (this.apiUrl + searchAppendix);
     return this.http.get(url);
   }
 

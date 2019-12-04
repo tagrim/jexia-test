@@ -1,3 +1,5 @@
+<app-search (keywordChanged)="onPageChanged('', $event)"></app-search>
+
 <app-common-grid [people]="people" [count]="count"></app-common-grid>
 
 <div class="loader-wrapper" *ngIf="isLoading">

@@ -21,9 +21,9 @@ export class AppComponent {
     this.onPageChanged();
   }
 
-  onPageChanged(link?: string) {
+  onPageChanged(link?: string, keyword?: string) {
     this.isLoading = true;
-    this.swGrabber.getPeople('', link).subscribe(({ results: people, next, previous, count }) => {
+    this.swGrabber.getPeople(keyword || '', link).subscribe(({ results: people, next, previous, count }) => {
       Object.assign(this, { people, next, previous, count });
       this.isLoading = false;
     });
